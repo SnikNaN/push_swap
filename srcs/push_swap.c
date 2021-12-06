@@ -175,25 +175,14 @@ unsigned int	ft_elem_height(t_list *begin, t_list *elem)
 
 t_list	*ft_find_place(t_list *a, t_list *elem)
 {
-	while (!((a->index < ft_lstlast(a)->index && (elem->index > ft_lstlast(a)->index || (elem)->index < a->index)) || (a->index > elem->index && ft_lstlast(a)->index < elem->index)))
+	while (!((a->index < ft_lstlast(a)->index && (elem->index > ft_lstlast(a)->index
+		|| (elem)->index < a->index))
+			|| (a->index > elem->index && ft_lstlast(a)->index < elem->index)))
 		a = a->next;
 	return (a);
 }
 
-//unsigned long long	*ft_count_score(t_list *a, t_list *b, t_list *aim, t_list *elem)
-//{
-//	unsigned int	height_aim;
-//	unsigned int 	height_elem;
-//	unsigned int 	a_size;
-//	unsigned int	b_size;
-//
-//	height_aim = ft_elem_height(a, aim);
-//	height_elem = ft_elem_height(b, elem);
-//	a_size = ft_list_size(a);
-//	b_size = ft_list_size(b);
-//}
-
-unsigned long long	ft_min(const unsigned long long score[4])
+unsigned int	ft_min(const unsigned int score[4])
 {
 	if (score[0] <= score[1] && score[0] <= score[2] && score[0] <= score[3])
 		return (score[0]);
@@ -204,7 +193,7 @@ unsigned long long	ft_min(const unsigned long long score[4])
 	return (score[3]);
 }
 
-int	ft_choose_strategy(const unsigned long long score[4])
+int	ft_choose_strategy(const unsigned int score[4])
 {
 	if (score[0] <= score[1] && score[0] <= score[2] && score[0] <= score[3])
 		return (0);
@@ -217,7 +206,7 @@ int	ft_choose_strategy(const unsigned long long score[4])
 
 void	ft_find_score(t_list *a, t_list *b, t_list *elem, t_list *aim)
 {
-	unsigned long long	score[4];
+	unsigned int	score[4];
 	unsigned int 		aim_height;
 	unsigned int 		elem_height;
 	unsigned int		aim_bottom;
@@ -313,12 +302,11 @@ void	ft_sort(t_list **a, t_list **b, t_params *params)
 	if (ft_elem_height(*a, params->max_sorted_end)
 			< ft_elem_height(*a, params->max_sorted_begin))
 	{
-		if (ft_elem_height(*a, params->max_sorted_end) <
- ft_list_size(*a) / 2)                                                  	while (ft_lstlast(*a) !=
- 				params->max_sorted_end)
-	 		ft_do_ra(a);
-        	else
-                	while (ft_lstlast(*a) != params->max_sorted_end)
+		if (ft_elem_height(*a, params->max_sorted_end) < ft_list_size(*a) / 2)
+			while (ft_lstlast(*a) != params->max_sorted_end)
+	 			ft_do_ra(a);
+			else
+				while (ft_lstlast(*a) != params->max_sorted_end)
                         ft_do_rra(a);
 	}
 	while (*a != params->max_sorted_begin)

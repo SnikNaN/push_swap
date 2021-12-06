@@ -21,7 +21,7 @@
 typedef struct s_list
 {
 	int					num;
-	unsigned long long	score;
+	unsigned int		score;
 	unsigned int 		strategy;
 	unsigned int		index;
 	struct s_list		*next;
