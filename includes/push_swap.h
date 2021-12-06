@@ -36,11 +36,8 @@ typedef struct s_params
 	t_list		*max_sorted_begin;
 	t_list		*max_sorted_end;
 	t_list		*list_sorted;
-	t_list		*list_saved;
-	char		str_out[50000];
 }	t_params;
 
-t_list 	*ft_dup_lst(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -52,14 +49,14 @@ void	ft_putstr(char *str);
 void	ft_puterr(char *msg);
 void	ft_support_sort(t_list	**a, t_params *params);
 
-void	ft_do_ra(t_list **a, t_params *params);
-void	ft_do_rra(t_list **a, t_params *params);
-void	ft_do_pa(t_list **a, t_list **b, t_params *params);
-void	ft_do_pb(t_list **a, t_list **b, t_params *params);
-void	ft_do_rb(t_list **b, t_params *params);
-void	ft_do_rrb(t_list **b, t_params *params);
-void 	ft_do_rr(t_list **a, t_list **b, t_params *params);
-void 	ft_do_rrr(t_list **a, t_list **b, t_params *params);
+void	ft_do_ra(t_list **a);
+void	ft_do_rra(t_list **a);
+void	ft_do_pa(t_list **a, t_list **b);
+void	ft_do_pb(t_list **a, t_list **b);
+void	ft_do_rb(t_list **b);
+void	ft_do_rrb(t_list **b);
+void 	ft_do_rr(t_list **a, t_list **b);
+void 	ft_do_rrr(t_list **a, t_list **b);
 
 void	ft_check_sort(t_list **a);
 #endif

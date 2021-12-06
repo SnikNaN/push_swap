@@ -12,31 +12,6 @@
 
 #include "push_swap.h"
 
-t_list 	*ft_dup_lst(t_list *lst)
-{
-	t_list			*new_lst;
-	t_list			*tmp;
-	t_list			*begin_list;
-
-	new_lst = NULL;
-	begin_list = lst;
-	while (lst)
-	{
-		tmp = ft_lstnew(lst->num);
-		if (!tmp)
-		{
-			ft_lstclear(&new_lst);
-			return (NULL);
-		}
-		tmp->index = lst->index;
-		ft_lstadd_back(&new_lst, tmp);
-		lst = lst->next;
-		if (lst == begin_list)
-			break ;
-	}
-	return (new_lst);
-}
-
 t_list 	*ft_copy_lst(t_list *lst)
 {
 	t_list			*new_lst;
