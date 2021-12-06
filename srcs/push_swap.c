@@ -53,51 +53,39 @@ void 	ft_sort_3(t_list *a, t_params params)
 void	ft_sort_4(t_list **a, t_list **b,  t_params *params)
 {
 	if ((*a)->next->index == 0)
-		ft_do_ra(a);
+		ft_do_ra(a, params);
 	else
 	{
 		while ((*a)->index != 0)
-			ft_do_rra(a);
+			ft_do_rra(a, params);
 	}
-	ft_check_sort(a);
-	ft_do_pb(a, b);
+	ft_do_pb(a, b, params);
 	ft_sort_3(*a, *params);
-	ft_do_pa(a, b);
+	ft_do_pa(a, b, params);
 }
 
 void 	ft_sort_5(t_list **a, t_list **b, t_params *params)
 {
-	if ((*a)->next->index == 0 || (*a)->next->next->index == 0)
+	while ((*a)->index != 0)
 	{
-		while ((*a)->index != 0)
-		{
-			if ((*a)->index == 1)
-				ft_do_pb(a, b);
-			else
-				ft_do_ra(a);
-		}
+		if ((*a)->index == 1)
+			ft_do_pb(a, b, params);
+		else if ((*a)->next->index == 0 || (*a)->next->next->index == 0)
+			ft_do_ra(a, params);
+		else
+			ft_do_rra(a, params);
 	}
-	else
-	{
-		while ((*a)->index != 0)
-		{
-			if ((*a)->index == 1)
-				ft_do_pb(a, b);
-			else
-				ft_do_rra(a);
-		}
-	}
-	ft_do_pb(a, b);
+	ft_do_pb(a, b, params);
 	if ((*b)->next == *b)
 	{
 		if ((*a)->next->index == 1)
-			ft_do_ra(a);
+			ft_do_ra(a, params);
 		else
 		{
 			while ((*a)->index != 1)
-				ft_do_rra(a);
+				ft_do_rra(a, params);
 		}
-		ft_do_pb(a, b);
+		ft_do_pb(a, b, params);
 	}
 	ft_sort_3(*a, *params);
 	if ((*b)->index < (*b)->next->index)
@@ -119,7 +107,7 @@ void	ft_find_longest_subseq(t_list *a, t_params *params)
 	params->max_sorted_cnt = 0;
 	while (begin)
 	{
-		if (size > params->max_sorted_cnt)
+		if (size > params->max_sorted_cnt)////
 		{
 			params->max_sorted_cnt = size;
 			params->max_sorted_begin = begin;
@@ -251,41 +239,58 @@ t_list 	*ft_minimal_score(t_list *a, t_list *b)
 	return (res);
 }
 
-void	ft_place_elem(t_list **a, t_list **b, t_list *elem, t_list *aim)
+void	ft_place_elem(t_list **a, t_list **b, t_list *elem, t_list *aim, t_params
+*params)
 {
 	if (elem->strategy == 0)
 	{
 		while (*a != aim && *b != elem)
-			ft_do_rr(a, b);
+			ft_do_rr(a, b, params);
 		while (*a != aim)
-			ft_do_ra(a);
+			ft_do_ra(a, params);
 		while (*b != elem)
-			ft_do_rb(b);
+			ft_do_rb(b, params);
 	}
 	else if (elem->strategy == 1)
 	{
 		while (*b != elem)
-			ft_do_rb(b);
+			ft_do_rb(b, params);
 		while (*a != aim)
-			ft_do_rra(a);
+			ft_do_rra(a, params);
 	}
 	else if (elem->strategy == 2)
 	{
 		while (*b != elem)
-			ft_do_rrb(b);
+			ft_do_rrb(b, params);
 		while (*a != aim)
-			ft_do_ra(a);
+			ft_do_ra(a, params);
 	}
 	else
 	{
 		while (*a != aim && *b != elem)
-			ft_do_rrr(a, b);
+			ft_do_rrr(a, b, params);
 		while (*a != aim)
-			ft_do_rra(a);
+			ft_do_rra(a, params);
 		while (*b != elem)
-			ft_do_rrb(b);
+			ft_do_rrb(b, params);
 	}
-	ft_do_pa(a, b);
+	ft_do_pa(a, b, params);
+}
+
+unsigned int	ft_ops_cnt(const char *str)
+{
+	unsigned int	i;
+	unsigned int	res;
+
+	i = 0;
+	res = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			res++;
+		i++;
+	}
+	return (res);
 }
 
 void	ft_sort(t_list **a, t_list **b, t_params *params)
@@ -296,7 +301,7 @@ void	ft_sort(t_list **a, t_list **b, t_params *params)
 	if (ft_list_size(*a) == params->max_sorted_cnt)
 	{
 		while (*a != params->max_sorted_begin)
-			ft_do_ra(a);
+			ft_do_ra(a, params);
 		return ;
 	}
 	if (ft_elem_height(*a, params->max_sorted_end)
@@ -304,26 +309,26 @@ void	ft_sort(t_list **a, t_list **b, t_params *params)
 	{
 		if (ft_elem_height(*a, params->max_sorted_end) < ft_list_size(*a) / 2)
 			while (ft_lstlast(*a) != params->max_sorted_end)
-	 			ft_do_ra(a);
+	 			ft_do_ra(a, params);
 			else
 				while (ft_lstlast(*a) != params->max_sorted_end)
-                        ft_do_rra(a);
+                        ft_do_rra(a, params);
 	}
 	while (*a != params->max_sorted_begin)
-		ft_do_pb(a, b);////
+		ft_do_pb(a, b, params);////
 	if (ft_elem_height(*a, params->max_sorted_end) < ft_list_size(*a) / 2)
 		while (ft_lstlast(*a) != params->max_sorted_end)
-			ft_do_ra(a);
+			ft_do_ra(a, params);
 	else
 		while (ft_lstlast(*a) != params->max_sorted_end)
-			ft_do_rra(a);
+			ft_do_rra(a, params);
 	while (*a != params->max_sorted_begin)
-		ft_do_pb(a, b);
+		ft_do_pb(a, b, params);
 	while (*b)
 	{
 		elem = ft_minimal_score(*a, *b);
 		aim = ft_find_place(*a, elem);
-		ft_place_elem(a, b, elem, aim);
+		ft_place_elem(a, b, elem, aim, params);
 	}
 	elem = *a;
 	while (elem->index)
@@ -331,11 +336,22 @@ void	ft_sort(t_list **a, t_list **b, t_params *params)
 	if (ft_elem_height(*a, elem) < ft_list_size(*a) / 2)
 	{
 		while ((*a)->index)
-			ft_do_ra(a);
+			ft_do_ra(a, params);
 	}
 	else
 		while ((*a)->index)
-			ft_do_rra(a);
+			ft_do_rra(a, params);
+	if (ft_ops_cnt(params->str_out) < 5500)
+		ft_putstr(params->str_out);
+	else
+	{
+		params->str_out[0] = '\0';
+		ft_lstclear(a);
+		*a = ft_dup_lst(params->list_saved);
+		ft_do_ra(a, params);
+		ft_find_longest_subseq(*a, params);
+		ft_sort(a, b, params);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -346,6 +362,7 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
+	params.str_out[0] = '\0';
 	params.cnt = ft_read_nums(&a, argc, argv);
 	if (params.cnt == 2)
 	{
@@ -364,11 +381,13 @@ int	main(int argc, char **argv)
 		else
 		{
 			ft_find_longest_subseq(a, &params);
+			params.list_saved = ft_dup_lst(a);
 			ft_sort(&a, &b, &params);
 		}
 	}
 	ft_lstclear(&a);
 	ft_lstclear(&b);
+	ft_lstclear(&params.list_saved);
 	ft_lstclear(&params.list_sorted);
 	return (0);
 }
