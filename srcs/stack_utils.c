@@ -88,3 +88,17 @@ void 	ft_do_rrr(t_list **a, t_list **b)
 	*b = ft_lstlast(*b);
 	ft_putstr("rrr\n");
 }
+
+void	ft_do_sa(t_list **a)
+{
+	t_list	*first;
+	t_list	*last;
+
+	first = *a;
+	last = ft_lstlast(*a);
+	*a = first->next;
+	last->next = *a;
+	first->next = (*a)->next;
+	(*a)->next = first;
+	ft_putstr("sa\n");
+}

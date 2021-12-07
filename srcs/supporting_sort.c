@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-t_list 	*ft_copy_lst(t_list *lst)
+static t_list 	*ft_copy_lst(t_list *lst)
 {
 	t_list			*new_lst;
 	t_list			*tmp;
@@ -39,7 +39,25 @@ t_list 	*ft_copy_lst(t_list *lst)
 	return (new_lst);
 }
 
-void 	ft_support_sort(t_list	**a, t_params *params)
+static void	ft_set_index(t_list *a, t_list *sorted)
+{
+	t_list	*lst;
+	t_list	*elem;
+
+	lst = sorted;
+	while (lst)
+	{
+		elem = a;
+		while (elem->num != lst->num)
+			elem = elem->next;
+		elem->index = lst->index;
+		lst = lst->next;
+		if (lst == sorted)
+			break ;
+	}
+}
+
+void 	ft_support_sort(t_list **a, t_params *params)
 {
 	t_list	*first;
 	t_list	*second;
@@ -64,15 +82,5 @@ void 	ft_support_sort(t_list	**a, t_params *params)
 		}
 		first = first->next;
 	}
-	first = params->list_sorted;
-	while (first)
-	{
-		second = *a;
-		while (second->num != first->num)
-			second = second->next;
-		second->index = first->index;
-		first = first->next;
-		if (first == params->list_sorted)
-			break ;
-	}
+	ft_set_index(*a, params->list_sorted);
 }

@@ -49,6 +49,7 @@ void	ft_putstr(char *str);
 void	ft_puterr(char *msg);
 void	ft_support_sort(t_list	**a, t_params *params);
 
+void	ft_do_sa(t_list **a);
 void	ft_do_ra(t_list **a);
 void	ft_do_rra(t_list **a);
 void	ft_do_pa(t_list **a, t_list **b);
