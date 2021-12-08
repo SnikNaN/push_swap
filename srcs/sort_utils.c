@@ -6,7 +6,7 @@
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 19:39:07 by eshana            #+#    #+#             */
-/*   Updated: 2021/12/08 21:15:07 by eshana           ###   ########.fr       */
+/*   Updated: 2021/12/08 21:16:43 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	ft_parallel_ops(t_list **a, t_list **b, t_list *elem)
 void	ft_place(t_list **a, t_list **b, t_list *elem)
 {
 	if (elem->strategy == 0 || elem->strategy == 3)
-		ft_parallel_ops(a, b, elem, aim);
+		ft_parallel_ops(a, b, elem);
 	else if (elem->strategy == 1)
 	{
 		while (*b != elem)
