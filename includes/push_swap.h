@@ -6,7 +6,7 @@
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 14:27:46 by eshana            #+#    #+#             */
-/*   Updated: 2021/12/08 20:41:38 by eshana           ###   ########.fr       */
+/*   Updated: 2021/12/08 20:42:13 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			ft_putstr(char *str);
 void			ft_puterr(char *msg);
 void			ft_support_sort(t_list	**a, t_params *params);
 unsigned int	ft_list_size(t_list *a);
+unsigned int	ft_elem_height(t_list *begin, t_list *elem);
 void			ft_do_sa(t_list **a);
 void			ft_do_ra(t_list **a);
 void			ft_do_rra(t_list **a);
