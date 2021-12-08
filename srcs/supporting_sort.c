@@ -6,13 +6,13 @@
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:37:25 by eshana            #+#    #+#             */
-/*   Updated: 2021/11/28 19:10:57 by eshana           ###   ########.fr       */
+/*   Updated: 2021/12/08 19:24:13 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list 	*ft_copy_lst(t_list *lst)
+static t_list	*ft_copy_lst(t_list *lst)
 {
 	t_list			*new_lst;
 	t_list			*tmp;
@@ -57,7 +57,7 @@ static void	ft_set_index(t_list *a, t_list *sorted)
 	}
 }
 
-void 	ft_support_sort(t_list **a, t_params *params)
+void	ft_support_sort(t_list **a, t_params *params)
 {
 	t_list	*first;
 	t_list	*second;

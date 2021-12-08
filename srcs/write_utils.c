@@ -24,7 +24,7 @@ void	ft_putstr(char *str)
 	}
 }
 
-void 	ft_puterr(char *msg)
+void	ft_puterr(char *msg)
 {
 	size_t	i;
 
