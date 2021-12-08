@@ -6,7 +6,7 @@
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 14:49:03 by eshana            #+#    #+#             */
-/*   Updated: 2021/12/08 20:39:43 by eshana           ###   ########.fr       */
+/*   Updated: 2021/12/08 20:40:47 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_sort(t_list **a, t_list **b, t_params *params)
 	while (*b)
 	{
 		elem = ft_find_minimal_score(*a, *b);
-		ft_place(a, b, elem, ft_find_place(*a, elem));
+		ft_place(a, b, elem);
 	}
 	elem = *a;
 	while (elem->index)

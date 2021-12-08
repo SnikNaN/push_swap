@@ -6,7 +6,7 @@
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 19:39:07 by eshana            #+#    #+#             */
-/*   Updated: 2021/12/08 20:40:47 by eshana           ###   ########.fr       */
+/*   Updated: 2021/12/08 21:15:07 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,14 @@ static void	ft_find_score(t_list *a, t_list *b, t_list *elem, t_list *aim)
 t_list	*ft_find_minimal_score(t_list *a, t_list *b)
 {
 	t_list	*lst;
-	t_list	*aim;
 	t_list	*res;
 
 	lst = b;
 	res = lst;
 	while (lst)
 	{
-		aim = ft_find_place(a, lst);
-		ft_find_score(a, b, lst, aim);
+		lst->aim = ft_find_place(a, lst);
+		ft_find_score(a, b, lst, lst->aim);
 		if (lst->score < res->score)
 			res = lst;
 		lst = lst->next;
@@ -70,29 +69,29 @@ t_list	*ft_find_minimal_score(t_list *a, t_list *b)
 	return (res);
 }
 
-static void	ft_parallel_ops(t_list **a, t_list **b, t_list *elem, t_list *aim)
+static void	ft_parallel_ops(t_list **a, t_list **b, t_list *elem)
 {
 	if (elem->strategy == 0)
 	{
-		while (*a != aim && *b != elem)
+		while (*a != elem->aim && *b != elem)
 			ft_do_rr(a, b);
-		while (*a != aim)
+		while (*a != elem->aim)
 			ft_do_ra(a);
 		while (*b != elem)
 			ft_do_rb(b);
 	}
 	else
 	{
-		while (*a != aim && *b != elem)
+		while (*a != elem->aim && *b != elem)
 			ft_do_rrr(a, b);
-		while (*a != aim)
+		while (*a != elem->aim)
 			ft_do_rra(a);
 		while (*b != elem)
 			ft_do_rrb(b);
 	}
 }
 
-void	ft_place(t_list **a, t_list **b, t_list *elem, t_list *aim)
+void	ft_place(t_list **a, t_list **b, t_list *elem)
 {
 	if (elem->strategy == 0 || elem->strategy == 3)
 		ft_parallel_ops(a, b, elem, aim);
@@ -100,14 +99,14 @@ void	ft_place(t_list **a, t_list **b, t_list *elem, t_list *aim)
 	{
 		while (*b != elem)
 			ft_do_rb(b);
-		while (*a != aim)
+		while (*a != elem->aim)
 			ft_do_rra(a);
 	}
 	else if (elem->strategy == 2)
 	{
 		while (*b != elem)
 			ft_do_rrb(b);
-		while (*a != aim)
+		while (*a != elem->aim)
 			ft_do_ra(a);
 	}
 	ft_do_pa(a, b);
