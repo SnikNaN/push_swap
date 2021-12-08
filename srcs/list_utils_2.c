@@ -6,7 +6,7 @@
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 19:47:17 by eshana            #+#    #+#             */
-/*   Updated: 2021/12/08 19:53:18 by eshana           ###   ########.fr       */
+/*   Updated: 2021/12/08 21:29:36 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,11 @@ unsigned int	ft_elem_height(t_list *begin, t_list *elem)
 
 t_list	*ft_find_place(t_list *a, t_list *elem)
 {
-	t_list	*last;
-
-	last = ft_lstlast(a);
 	while (!(
-			(a->num < last->num && (elem->num > last->num || elem->num < a->num)
+			(a->num < ft_lstlast(a)->num
+				&& (elem->num > ft_lstlast(a)->num || elem->num < a->num)
 			)
-			|| (a->num > elem->num && last->num < elem->num)
+			|| (a->num > elem->num && ft_lstlast(a)->num < elem->num)
 		))
 		a = a->next;
 	return (a);
