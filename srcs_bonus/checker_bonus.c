@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_read_input(char cmd[4])
+static int	ft_read_input(char cmd[4])
 {
 	unsigned int	i;
 	int				cnt;
@@ -37,7 +37,7 @@ int	ft_read_input(char cmd[4])
 	return (-1);
 }
 
-int	ft_strcmp(const char str1[4], const char *str2)
+static int	ft_strcmp(const char str1[4], const char *str2)
 {
 	unsigned int	i;
 
@@ -53,7 +53,7 @@ int	ft_strcmp(const char str1[4], const char *str2)
 	return (1);
 }
 
-void	ft_exec_cmd(char cmd[4], t_list **a, t_list **b)
+static void	ft_exec_cmd(char cmd[4], t_list **a, t_list **b)
 {
 	if (ft_strcmp(cmd, "sa"))
 		ft_do_sa(a);

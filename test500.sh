@@ -14,7 +14,7 @@ while [ $NUM500 -lt 5500 ] && [ $RES500 = "OK" ]
 			MAX500=$NUM500
 			echo $MAX500 > max500
 		fi
-		RES500=`cat res500 | ./checker_linux $ARG500`
+		RES500=`cat res500 | ./checker $ARG500`
 		echo $RES500
 	
 done
