@@ -6,17 +6,25 @@
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 14:27:46 by eshana            #+#    #+#             */
-/*   Updated: 2021/12/08 20:42:13 by eshana           ###   ########.fr       */
+/*   Updated: 2021/12/09 04:03:16 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define NUM_ERROR -2147483650
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
+
+# define NUM_ERROR -2147483650
+
+enum	e_strategies
+{
+	RR,
+	RB_RRA,
+	RRB_RA,
+	RRR
+};
 
 typedef struct s_list
 {

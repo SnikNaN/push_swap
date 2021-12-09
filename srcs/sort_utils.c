@@ -36,15 +36,15 @@ static void	ft_find_score(t_list *a, t_list *b, t_list *elem, t_list *aim)
 	aim_bottom = ft_list_size(a) - aim_height;
 	elem_bottom = ft_list_size(b) - elem_height;
 	if (aim_height > elem_height)
-		score[0] = aim_height;
+		score[RR] = aim_height;
 	else
-		score[0] = elem_height;
-	score[1] = elem_height + aim_bottom;
-	score[2] = elem_bottom + aim_height;
+		score[RR] = elem_height;
+	score[RB_RRA] = elem_height + aim_bottom;
+	score[RRB_RA] = elem_bottom + aim_height;
 	if (aim_bottom > elem_bottom)
-		score[3] = aim_bottom;
+		score[RRR] = aim_bottom;
 	else
-		score[3] = elem_bottom;
+		score[RRR] = elem_bottom;
 	elem->strategy = ft_choose_strategy(score);
 	elem->score = score[elem->strategy];
 }
@@ -71,7 +71,7 @@ t_list	*ft_find_minimal_score(t_list *a, t_list *b)
 
 static void	ft_parallel_ops(t_list **a, t_list **b, t_list *elem)
 {
-	if (elem->strategy == 0)
+	if (elem->strategy == RR)
 	{
 		while (*a != elem->aim && *b != elem)
 			ft_do_rr(a, b);
@@ -93,16 +93,16 @@ static void	ft_parallel_ops(t_list **a, t_list **b, t_list *elem)
 
 void	ft_place(t_list **a, t_list **b, t_list *elem)
 {
-	if (elem->strategy == 0 || elem->strategy == 3)
+	if (elem->strategy == RR || elem->strategy == RRR)
 		ft_parallel_ops(a, b, elem);
-	else if (elem->strategy == 1)
+	else if (elem->strategy == RB_RRA)
 	{
 		while (*b != elem)
 			ft_do_rb(b);
 		while (*a != elem->aim)
 			ft_do_rra(a);
 	}
-	else if (elem->strategy == 2)
+	else if (elem->strategy == RRB_RA)
 	{
 		while (*b != elem)
 			ft_do_rrb(b);

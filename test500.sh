@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 NUM500=0
 MAX500=0
 RES500="OK"
-while [ $NUM500 -lt 5500 -a $RES500 = "OK" ]
+while [ $NUM500 -lt 5500 ] && [ $RES500 = "OK" ]
 	do
 		ARG500=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
 		./push_swap $ARG500 > res500
@@ -14,7 +14,7 @@ while [ $NUM500 -lt 5500 -a $RES500 = "OK" ]
 			MAX500=$NUM500
 			echo $MAX500 > max500
 		fi
-		RES500=`cat res500 | ./checker_Mac $ARG500`
+		RES500=`cat res500 | ./checker_linux $ARG500`
 		echo $RES500
 	
 done
