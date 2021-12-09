@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_utils.c                                       :+:      :+:    :+:   */
+/*   read_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eshana <eshana@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 14:51:07 by eshana            #+#    #+#             */
-/*   Updated: 2021/11/28 19:09:22 by eshana           ###   ########.fr       */
+/*   Created: 2021/12/09 14:51:07 by eshana            #+#    #+#             */
+/*   Updated: 2021/12/09 19:09:22 by eshana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ int	ft_check_sort(t_list **a)
 				break ;
 		}
 	}
-	ft_lstclear(a);
-	exit(EXIT_SUCCESS);
+	return (1);
 }
 
 unsigned int	ft_read_nums(t_list **a, int argc, char **argv)
@@ -104,6 +103,5 @@ unsigned int	ft_read_nums(t_list **a, int argc, char **argv)
 			ft_error(a, NULL);
 		cnt++;
 	}
-	ft_check_sort(a);
 	return (cnt);
 }

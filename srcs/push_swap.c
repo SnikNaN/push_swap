@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_sort_3(t_list **a, t_params params)
+static void	ft_sort_3(t_list **a, t_params params)
 {
 	ft_find_min_max(*a, &params);
 	if (ft_lstlast(*a)->index == params.max)
@@ -37,17 +37,25 @@ void	ft_sort_3(t_list **a, t_params params)
 	}
 }
 
-void	ft_sort_5(t_list **a, t_list **b, t_params *params)
+static void	ft_sort_2_b(t_list **b)
+{
+	if ((*b)->index < (*b)->next->index)
+		ft_putstr("rb\n");
+}
+
+static void	ft_sort_5(t_list **a, t_list **b, t_params *params)
 {
 	while ((*a)->index != 0)
+	{
 		if ((*a)->index == 1)
 			ft_do_pb(a, b);
-	else
-	{
-		if ((*a)->next->index == 0 || (*a)->next->next->index == 0)
-			ft_do_ra(a);
 		else
-			ft_do_rra(a);
+		{
+			if ((*a)->next->index == 0 || (*a)->next->next->index == 0)
+				ft_do_ra(a);
+			else
+				ft_do_rra(a);
+		}
 	}
 	ft_do_pb(a, b);
 	if ((*b)->next == *b)
@@ -60,8 +68,7 @@ void	ft_sort_5(t_list **a, t_list **b, t_params *params)
 		ft_do_pb(a, b);
 	}
 	ft_sort_3(a, *params);
-	if ((*b)->index < (*b)->next->index)
-		ft_putstr("rb\n");
+	ft_sort_2_b(b);
 	ft_putstr("pa\npa\n");
 }
 

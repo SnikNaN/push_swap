@@ -52,23 +52,28 @@ void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 t_list			*ft_lstnew(int num);
 void			ft_lstclear(t_list **lst);
-int				ft_read_nums(t_list **a, int argc, char **argv);
+unsigned int	ft_read_nums(t_list **a, int argc, char **argv);
 void			ft_error(t_list **lst_a, t_list **lst_b);
 void			ft_putstr(char *str);
 void			ft_puterr(char *msg);
 void			ft_support_sort(t_list	**a, t_params *params);
 unsigned int	ft_list_size(t_list *a);
 unsigned int	ft_elem_height(t_list *begin, t_list *elem);
+
 void			ft_do_sa(t_list **a);
 void			ft_do_ra(t_list **a);
 void			ft_do_rra(t_list **a);
 void			ft_do_pa(t_list **a, t_list **b);
+
 void			ft_do_pb(t_list **a, t_list **b);
 void			ft_do_rb(t_list **b);
 void			ft_do_rrb(t_list **b);
+
 void			ft_do_rr(t_list **a, t_list **b);
 void			ft_do_rrr(t_list **a, t_list **b);
-void			ft_check_sort(t_list **a);
+void			ft_do_ss(t_list **a, t_list **b);
+
+int				ft_check_sort(t_list **a);
 void			ft_find_min_max(t_list *lst, t_params *params);
 t_list			*ft_find_minimal_score(t_list *a, t_list *b);
 void			ft_place(t_list **a, t_list **b, t_list *elem);
