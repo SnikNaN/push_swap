@@ -72,7 +72,7 @@ static void	ft_sort_5(t_list **a, t_list **b, t_params *params)
 	ft_putstr("pa\npa\n");
 }
 
-void	ft_sort(t_list **a, t_list **b, t_params *params)
+static void	ft_sort(t_list **a, t_list **b, t_params *params)
 {
 	t_list	*elem;
 
